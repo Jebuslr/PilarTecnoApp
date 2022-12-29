@@ -14,18 +14,12 @@ const AppHeader = (props) => {
   const {title='Pilar Tecno', rightComponent, leftComponent} = props 
 
   return (
-    <>
+    
     <Header
-      leftComponent={leftComponent?leftComponent:{
-        icon: 'menu',
-        color: '#fff',
-      }}
+      leftComponent={leftComponent?leftComponent:null}
       rightComponent={rightComponent?rightComponent:
         (
             <View style={styles.headerRight}>
-            <TouchableOpacity>
-              <Icon name="description" color="white" />
-            </TouchableOpacity>
             <TouchableOpacity
               style={{ marginLeft: 10 }}
             >
@@ -37,7 +31,7 @@ const AppHeader = (props) => {
       }
       centerComponent={{ text: title , style: styles.heading }}
     />
-    </>
+    
   );
 };
 

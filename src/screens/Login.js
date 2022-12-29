@@ -1,13 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-
+import 'react-native-gesture-handler';
 
 import {
   SafeAreaView,
@@ -22,28 +14,32 @@ import {
   ImageBackground,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Header from './AppHeader';
-import 'react-native-gesture-handler';
-import {AppStack} from '../routes/app';
-import {NavigationContainer} from '@react-navigation/native';
+import Header from '../components/AppHeader';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-const App = () => {
+const Login = () => {
   
   return (
-    <NavigationContainer>
-    <AppStack/>
- </NavigationContainer>
+    <SafeAreaProvider>
+     
+      <View style={styles.viewGrid}>
+     
+    <Text style={styles.textButton}>Login</Text>
+
+      </View>
+    </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
   textButton:{
-    justifyContent:'center', 
-    color: 'white',
+    justifyContent:'center',
+    fontSize:20,
+    fontWeight:'700' 
+  
   },
   viewGrid: {
     flex:1,
@@ -79,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Login;

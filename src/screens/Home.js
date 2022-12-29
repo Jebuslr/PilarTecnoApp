@@ -22,13 +22,19 @@ import {
   ImageBackground,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import Header from './AppHeader';
+import Header from '../components/AppHeader';
+import { useNavigation } from '@react-navigation/native';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
 const Home = () => {
+const navigation = useNavigation()
+  const navigateTo = (route) => {
+navigation.navigate(route)
+
+  }
   
   return (
     <SafeAreaProvider>
@@ -37,14 +43,14 @@ const Home = () => {
       <ImageBackground style={{height: HEIGHT, width: WIDTH}} source={{uri: 'https://i.pinimg.com/originals/31/c9/77/31c977acf0dc5066b0f3d6b964051399.jpg'}}>
         <View style={{flexDirection:'row', flex:1}}>
           <View style={{...styles.viewGrid, justifyContent: 'flex-end', paddingBottom:'5%'}}>
-          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'green'}}>
+          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'green'}} onPress={()=>navigateTo('Task')}>
             <Text style={styles.textButton}>
             Tareas
             </Text>
           </TouchableOpacity>  
           </View>
           <View style={{...styles.viewGrid,justifyContent: 'flex-end', paddingBottom:'5%'}}>
-          <TouchableOpacity  style={{...styles.buttonGrid, backgroundColor:'blue'}}>
+          <TouchableOpacity  style={{...styles.buttonGrid, backgroundColor:'blue'}} onPress={()=>navigateTo('Profile')}>
             <Text style={styles.textButton}>
             Perfil
             </Text>
@@ -53,14 +59,14 @@ const Home = () => {
         </View>
         <View style={{flexDirection:'row', flex:1}}>
           <View style={{...styles.viewGrid, justifyContent: 'flex-start', paddingTop:'5%'}}>
-          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'red'}}>
+          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'red'}} onPress={()=>navigateTo('List')}>
             <Text style={styles.textButton}>
-            Pokedex
+            Listas
             </Text>
           </TouchableOpacity>  
           </View>
           <View style={{...styles.viewGrid, justifyContent: 'flex-start', paddingTop:'5%'}}>
-          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'aqua'}}>
+          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'aqua'}} onPress={()=>navigateTo('Map')}>
             <Text style={styles.textButton}>
             Mapa
             </Text>
