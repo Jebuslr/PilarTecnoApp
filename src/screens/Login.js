@@ -1,5 +1,4 @@
 import React from 'react';
-import 'react-native-gesture-handler';
 
 import {
   SafeAreaView,
@@ -12,9 +11,12 @@ import {
   View,
   Dimensions,
   ImageBackground,
+  Button,
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Header from '../components/AppHeader';
+import {useDispatch} from 'react-redux';
+import { appActions } from '../redux/appRedux';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -22,12 +24,18 @@ const HEIGHT = Dimensions.get('window').height;
 
 const Login = () => {
   
+  const dispatch = useDispatch()
+  const setAuth = () =>{
+    dispatch(appActions.setUser({name:'jesus', lastname:'Solorzano' }))
+
+  }
+
   return (
     <SafeAreaProvider>
      
       <View style={styles.viewGrid}>
      
-    <Text style={styles.textButton}>Login</Text>
+    <Button title='ingresar' onPress={()=>setAuth()}/>
 
       </View>
     </SafeAreaProvider>

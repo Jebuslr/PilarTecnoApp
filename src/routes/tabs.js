@@ -1,14 +1,16 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import GoogleMap from '../screens/GoogleMap';
 import List from '../screens/List';
 import {Icon} from '@rneui/themed';
-import Task from '../screens/Task';
+import Task from '../screens/Tasks';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const PRIMARY_COLOR = '#0da9ba'
+
 
 export const Tabs = () => {
   return (
