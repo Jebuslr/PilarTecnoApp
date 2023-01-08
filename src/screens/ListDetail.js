@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -9,35 +8,65 @@ import {
   useColorScheme,
   TouchableOpacity,
   View,
+  Image,
   Dimensions,
   ImageBackground,
-  Button,
 } from 'react-native';
+
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {Button, Stack, ListItem, Avatar} from '@rneui/themed';
 import Header from '../components/AppHeader';
-import {useDispatch} from 'react-redux';
-import { appActions } from '../redux/appRedux';
+import api,{IMG_URL} from '../../services/api'
+import { useSelector, useDispatch } from 'react-redux';
+import { appSelector, appActions } from '../redux/appRedux';
+import { FlatList } from 'react-native-gesture-handler';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
-const Login = () => {
-  
+const ListDetail = (props) => {
+const {url} = props.route.params.data
   const dispatch = useDispatch()
-  const setAuth = () =>{
-    dispatch(appActions.setUser({name:'jesus', lastname:'Solorzano' }))
+  const [pokemon, setPokemons] = useState(null)
 
-  }
+  const fetchData = async(url) => {
+    
+    try {
+      dispatch(appActions.loading(true))
+      const result = await api.GET(url)
+      if (result) {
+        console.log('poke data: ', result)
+        setPokemons(result)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      dispatch(appActions.loading(false))
+    }
+  };
 
+  useEffect(() => {
+    fetchData()
+  },[])
+
+  const getPokemonImgId = (id) => {
+    console.log('long. '+id.length)
+    switch (id.length) {
+    case 1:
+    return `00${id}`
+    case 2:
+    return `0${id}`
+    default:
+    return id
+    }
+   }
+
+  
   return (
     <SafeAreaProvider>
-     
-      <View style={styles.viewGrid}>
-     
-        <Button title='ingresar' onPress={()=>setAuth()}/>
-
-      </View>
+      <Header title='Pokedex'/>
+    <Text>Detalle</Text>   
     </SafeAreaProvider>
   );
 };
@@ -83,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default ListDetail;

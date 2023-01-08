@@ -1,14 +1,49 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
+import Task from '../screens/Tasks';
 import Profile from '../screens/Profile';
 import GoogleMap from '../screens/GoogleMap';
 import List from '../screens/List';
+import ListDetail from '../screens/ListDetail';
 import {Icon} from '@rneui/themed';
-import Task from '../screens/Task';
+
+
+const HomeStack = createStackNavigator();
+
+const HomeScreens = ()=> {
+  const sesion = true
+  return (
+    <HomeStack.Navigator screenOptions={{headerShown:false}}>
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="Tasks" component={Task} />
+
+    </HomeStack.Navigator>
+  )
+}
+
+
+const ListStack = createStackNavigator();
+
+const ListScreens = () => {
+
+  const sesion = true
+
+  return(
+    <HomeStack.Navigator screenOptions={{headerShown:false}}>
+      <HomeStack.Screen name="List" component={List} />
+      <HomeStack.Screen name="Detail" component={ListDetail} />
+
+    </HomeStack.Navigator>
+  );
+}
+
+
 
 const Tab = createMaterialBottomTabNavigator();
 
 const PRIMARY_COLOR = '#0da9ba'
+
 
 export const Tabs = () => {
   return (
@@ -44,7 +79,7 @@ export const Tabs = () => {
  }}/>
   
 
-  <Tab.Screen name='List' component={List} options={{
+  <Tab.Screen name='Listas' component={ListScreens} options={{
         tabBarLabel: 'List',
         tabBarIcon: ({color}) =>(
           <Icon

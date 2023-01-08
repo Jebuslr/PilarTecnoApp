@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import 'react-native-gesture-handler';
 
@@ -23,17 +15,17 @@ import {
 } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Header from '../components/AppHeader';
-import { useNavigation } from '@react-navigation/native';
+import {NavigationContainerRefContext ,useNavigation } from '@react-navigation/native';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 
 const Home = () => {
+
 const navigation = useNavigation()
   const navigateTo = (route) => {
 navigation.navigate(route)
-
   }
   
   return (
@@ -59,7 +51,7 @@ navigation.navigate(route)
         </View>
         <View style={{flexDirection:'row', flex:1}}>
           <View style={{...styles.viewGrid, justifyContent: 'flex-start', paddingTop:'5%'}}>
-          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'red'}} onPress={()=>navigateTo('List')}>
+          <TouchableOpacity style={{...styles.buttonGrid, backgroundColor:'red'}} onPress={()=>navigateTo('Listas')}>
             <Text style={styles.textButton}>
             Listas
             </Text>
